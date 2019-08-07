@@ -10,7 +10,7 @@ router.post('/host', register.registerHost);
 
 // Register Event
 router.post('/event', register.registerEvent);
-   
+
 
 
 
