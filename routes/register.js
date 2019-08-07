@@ -9,7 +9,7 @@ router.post('/host', register.registerHost);
 
 
 // Register Event
-router.post('/event', verifyToken, register.registerEvent);
+router.post('/event', register.registerEvent);
    
 
 
