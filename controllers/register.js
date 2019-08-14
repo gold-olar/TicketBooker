@@ -7,15 +7,13 @@ const secret = process.env.JWT_SECRET;
 
 
 // Cloudinary Config
-cloudinary.config({ 
-    cloud_name: process.env.CLOUDINARY_CLOUDNAME, 
-    api_key: process.env.CLOUDINARY_API_KEY, 
-    api_secret: process.env.API_SECRET 
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUDNAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.API_SECRET
 });
-  
 
-
-
+// Register Host
 const registerHost = async (req, res) => {
     const { name, accountNumber, email, password } = req.body;
     const existing_host = await Host.find({ email: email })
@@ -47,16 +45,9 @@ const registerHost = async (req, res) => {
     }
 }
 
-const test_image = 'https://pbs.twimg.com/media/EBUxBGuU4AELO4k?format=jpg&name=900x900'
-
+// Register Event
 const registerEvent = async (req, res) => {
-    const { title, organizer,banner, category, host, venue, availableSeats, date } = req.body;
-    const bannerUrl = await cloudinary.uploader.upload( test_image , function(error, result) { 
-        if (err) throw err;
-
-        console.log(result)
-        return result;
-     });
+    const { title, organizer, banner, category, host, venue, avaialableSeats, date, price } = req.body;
 
     const newEvent = new Event({
         title: title,
@@ -64,17 +55,26 @@ const registerEvent = async (req, res) => {
         host: host,
         organizer: organizer,
         venue: venue,
-        availableSeats: availableSeats,
+        avaialableSeats: avaialableSeats,
         date: date,
-        banner: bannerUrl
+        price:price
+        // banner: bannerUrl
     })
+    const bannerUrl = await cloudinary.uploader.upload(banner, function (err, result) {
+        if (err) {
+            console.log(err)
+        } else {
+            return result;
+        }
+    });
+    newEvent.banner = bannerUrl.url
     newEvent.save()
-    .then(event=>{
-        res.status(201).json({
-            message : 'Event Registered',
-            
+        .then(event => {
+            res.status(201).json({
+                message: 'Event Registered',
+
+            })
         })
-    })
 
 }
 

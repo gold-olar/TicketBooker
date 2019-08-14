@@ -10,7 +10,6 @@ const EventSchema = new Schema({
     },
     banner:{
         type: String,
-        required: true
     },
     category:{
         type: String
@@ -24,10 +23,14 @@ const EventSchema = new Schema({
         required: true
     },
     venue:{
-        type: Number,
+        type: String,
         required: false
     },
     avaialableSeats:{
+        type: Number,
+        required: true
+    },
+    price:{
         type: Number,
         required: true
     },

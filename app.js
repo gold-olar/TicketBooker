@@ -7,15 +7,19 @@ require('dotenv').config()
 
 
 // Connecting to mongoose
-mongoose.connect(db.mongo, {useNewUrlParser: true})
+mongoose.connect(db.mongo, {
+  useNewUrlParser: true,
+  useFindAndModify: true
+})
 .then(console.log('Database is connected'));
 
 
 // Routes
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
+const bookRouter = require('./routes/book'); 
+const getEventRouter = require('./routes/getEvent');
 
 const app = express();
 
@@ -30,9 +34,10 @@ app.use(express.urlencoded({ extended: false }));
 
 // Use Routes 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/get-event', getEventRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
+app.use('/book', bookRouter);
 
 
 module.exports = app;
