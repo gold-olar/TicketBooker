@@ -18,7 +18,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.8",
     "morgan": "~1.9.1",
+    "nodemailer": "^6.3.0",
     "nodemon": "^1.19.1",
-    "paystack": "^2.0.1"
+    "paystack": "^2.0.1",
+    "randomstring": "^1.1.5"
   }
 }

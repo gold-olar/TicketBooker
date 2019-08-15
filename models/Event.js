@@ -38,6 +38,10 @@ const EventSchema = new Schema({
         type: Array,
         default:[]
     },
+    issuedTickets:{
+        type: Array,
+        default:[]
+    },
     registeredPeopleEmails:{
         type: Array,
         default:[]
