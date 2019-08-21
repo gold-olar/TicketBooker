@@ -27,9 +27,9 @@ const process = async (req, res) => {
             // secure: true,
             service: 'Gmail',
             auth: {
-                user: "capitalassure2019@gmail.com",
-                pass: "capitalassure2019capitalassure2019"
-            }
+                user:  process.env.EMAIL,
+                pass: process.env.PASSWORD
+                        }
         });
         const mail = {
             from:"capitalassure2019@gmail.com",
