@@ -18,6 +18,8 @@ router.post('/', async (req, res) => {
                     res.cookie('auth', token);
                     res.status(200).json({
                         message: 'Login Successful',
+                        token: token,
+                        host: loginHost.name.split(' ')[0],
                         events: allEvents,
                     })
 
@@ -27,7 +29,7 @@ router.post('/', async (req, res) => {
             }
         })
     } else {
-        res.status(404).json({
+        res.json({
             message: 'User Not Found,Please Register.'
         })
     }

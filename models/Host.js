@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// const ObjectId = Schema.ObjectId;
  
 const HostSchema = new Schema({
     name:{
@@ -17,6 +16,10 @@ const HostSchema = new Schema({
     },
     accountNumber:{
         type: Number,
+        required: false
+    },
+    bankName:{
+        type: String,
         required: false
     },
     Date:{

@@ -20,6 +20,7 @@ const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
 const bookRouter = require('./routes/book'); 
 const getEventRouter = require('./routes/getEvent');
+const dashboardRouter = require('./routes/dashboard');
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use('/get-event', getEventRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/book', bookRouter);
+app.use('/dashboard', dashboardRouter);
 
 
 module.exports = app;

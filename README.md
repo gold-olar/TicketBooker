@@ -12,7 +12,7 @@ Body Should Contain
 
 *'/register/host'* to register eventhoster (post)
 Body Should Contain
-*{name, accountNumber, email, password}*
+*{name, accountNumber, banknName,  email, password}*
 
 
 *'/book'* to register eventhoster (post)

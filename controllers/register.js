@@ -15,18 +15,15 @@ cloudinary.config({
 
 // Register Host
 const registerHost = async (req, res) => {
-    const { name, accountNumber, email, password } = req.body;
+    const { name, accountNumber, bankName,  email, password } = req.body;
     const existing_host = await Host.find({ email: email })
-    if (existing_host.length > 0) {
+    if (existing_host) {
         res.json({
             message: 'User Already Exists, Please proceed to Login.',
         })
     } else {
         const newHost = new Host({
-            name: name,
-            accountNumber: accountNumber,
-            email: email,
-            password: password
+            name, accountNumber, email, password, bankName
         })
         const saltRounds = 10;
         bcrypt.hash(newHost.password, saltRounds, function (err, hash) {
@@ -36,8 +33,7 @@ const registerHost = async (req, res) => {
                 .then(host => [
                     res.status(201).json({
                         message: 'Registered',
-                        host_name: host.name,
-                        host_accountNumber: host.accountNumber,
+                        host: newHost
                     })
                 ]);
         });
@@ -72,7 +68,7 @@ const registerEvent = async (req, res) => {
         .then(event => {
             res.status(201).json({
                 message: 'Event Registered',
-
+                event: newEvent,
             })
         })
 
